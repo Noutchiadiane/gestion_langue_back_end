@@ -14,10 +14,11 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   language.init({
-    title: DataTypes.STRING,
-    speak: DataTypes.INTEGER,
-    understand: DataTypes.INTEGER,
-    read: DataTypes.INTEGER
+    name: DataTypes.STRING,
+    code: DataTypes.STRING,
+    speak: DataTypes.STRING,
+    write: DataTypes.STRING,
+    read: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'language',

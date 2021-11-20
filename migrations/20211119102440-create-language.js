@@ -8,17 +8,20 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      title: {
+      name: {
+        type: Sequelize.STRING
+      },
+      code: {
         type: Sequelize.STRING
       },
       speak: {
-        type: Sequelize.INTEGER
+        type: Sequelize.STRING
       },
-      understand: {
-        type: Sequelize.INTEGER
+      write: {
+        type: Sequelize.STRING
       },
       read: {
-        type: Sequelize.INTEGER
+        type: Sequelize.STRING
       },
       createdAt: {
         allowNull: false,

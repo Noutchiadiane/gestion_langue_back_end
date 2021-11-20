@@ -3,11 +3,9 @@ const Op = Sequelize.Op;
 let self = {};
 self.getAll = async (req, res) => {
   try {
-    let data = await language.findAll({
-      attributes: ["title", "speak", "understand", "read"],
-    });
+    let data = await language.findAll();
     return res.json({
-      status: "ok",
+      status: true,
       data: data,
     });
   } catch (error) {
@@ -31,7 +29,7 @@ self.getWithItems = async (req, res) => {
       ],
     });
     return res.json({
-      status: "ok",
+      status: true,
       data: data,
     });
   } catch (error) {
@@ -45,13 +43,13 @@ self.get = async (req, res) => {
   try {
     let id = req.params.id;
     let data = await language.findOne({
-      attributes: ["title", "speak", "understand", "read"],
+      attributes: ["name", "code","speak", "write", "read"],
       where: {
         id: id,
       },
     });
     return res.json({
-      status: "ok",
+      status: true,
       data: data,
     });
   } catch (error) {
@@ -65,7 +63,7 @@ self.search = async (req, res) => {
   try {
     let text = req.query.text;
     let data = await language.findAll({
-      attributes: ["title", "speak", "understand", "read"],
+      attributes: ["name", "code","speak", "write", "read"],
       where: {
         name: {
           [Op.like]: "%" + text + "%",
@@ -73,7 +71,7 @@ self.search = async (req, res) => {
       },
     });
     return res.json({
-      status: "ok",
+      status: true,
       data: data,
     });
   } catch (error) {
@@ -88,7 +86,7 @@ self.save = async (req, res) => {
     let body = req.body;
     let data = await language.create(body);
     return res.json({
-      status: "ok",
+      status: true,
       data: data,
     });
   } catch (error) {
@@ -100,15 +98,17 @@ self.save = async (req, res) => {
 };
 self.update = async (req, res) => {
   try {
-    let id = req.params.id;
+    let id = req.body.id;
     let body = req.body;
-    let data = await language.update(body, {
+    let data = await language.update(
+      body, {
       where: {
         id: id,
       },
     });
+    console.log(data)
     return res.json({
-      status: "ok",
+      status: true,
       data: data,
     });
   } catch (error) {
@@ -127,7 +127,7 @@ self.delete = async (req, res) => {
       },
     });
     return res.json({
-      status: "ok",
+      status: true,
       data: data,
     });
   } catch (error) {

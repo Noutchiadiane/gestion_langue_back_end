@@ -5,7 +5,7 @@ module.exports = function(express) {
  route.get("/",language.getAll);
  route.get("/:id",language.get);
  route.post("/",language.save);
- route.put("/:id",language.update);
+ route.put("/update",language.update);
  route.delete("/:id",language.delete);
 
  return route;
